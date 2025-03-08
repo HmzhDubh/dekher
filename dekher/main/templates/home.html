@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container">
+        <div class="top">
+            {% if request.user.is_authenticated %}
+                <div class="user_funds">
+                    <h3>Funds</h3>
+                    {% include 'fund_card.html' %}
+
+                </div>
+            {% endif %}
+            <div class="row mt-5 mb-5">
+
+                <img class="col-lg-6" src="{% static 'images/home-phone.png' %}">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-5 ">
+                        <strong class=" display-1 text-end mt-5 pt-5 text-success">ابق دائمًا ملتزماً بخطتك معنا</strong>
+                        <div class="text-end align-items-center">
+
+                            <a href="#more" class="btn btn-success">اعرف المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="more" class="container text-center mt-5 pt-5">
+                <p class="display-1 m-3 mb-3 text-success">شركة دِخر هي شركة ناشئة تتطّلع إلى تغيير طريقة الإدخار بين الناس</p>
+                <br><br>
+                <h3 class="m-3 pt-4">صُمم موقعنا الإلكتوني لإدارة  الجمعيات المالية بين الناس وبنائها وتنميتها، مع الأشخاص الذين تعرفهم والأشخاص الذين تثق بهم. مع وجود العديد من الخدمات المماثلة، فإن الفريق خلف شركة دِخر يعمل بكد لتصميم الموقع الإلكتروني الذي تحتاج إليه</h3>
+            </div>
+
+            <div class="row mt-5 mb-5 pt-3">
+
+                <img class="col-lg-6" src="{% static 'images/home-phone.png' %}">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-5 ">
+                        <strong class=" display-1 text-end mt-5 pt-5 text-success">إدخر مع الأصدقاء والعائلة</strong>
+                        <h3 class="text-end">استخدم الموقع الإلكتروني لإنشاء الجمعية وإدارتها ودعوة الأعضاء بلا حدود.
+
+                            يمكن للمستخدمين الإطلاع على تفاصيل الجمعية المشاركين فيها.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 mb-5 pt-3">
+
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-5 ">
+                        <strong class=" display-1 text-end mt-5 pt-5 text-success">ابقَ على إطلاع</strong>
+                        <h3 class="text-end">يستعرض الموقع كافة المعلومات المتعلقة بالمدفوعات الشهرية والشهر المحدد للقبض.
+                            فإن شاشة العرض المُتضمنة ستغيّر طريقة تعاملك مع الجمعيات المالية.</h3>
+                    </div>
+                </div>
+                <img class="col-lg-6" src="{% static 'images/home-phone.png' %}">
+            </div>
+
+            <div class="row mt-5 mb-5 pt-3">
+
+                <img class="col-lg-6" src="{% static 'images/home-phone.png' %}">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-5 ">
+                        <strong class=" display-1 text-end mt-5 pt-5 text-success">ابني جمعيتك المالية</strong>
+                        <h3 class="text-end">يقدم لك تطبيق دخر الخدمات والمساحات التي قد تثير اهتمامك.
+                            يمكنك استخدام هذه الخدمات لإدارة أعضاء جدد والتفاعل معهم وبناء علاقات مالية معهم.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between p-5 mt-5 pt-5">
+
+                <div class="text-end align-items-end">
+                    <img src="{% static 'images/dekhrLogo.svg' %}" class="w-50">
+                </div>
+
+                <div class="col text-end">
+                    <div class="">
+                        <h1 class="">التواصل</h1>
+                        <p class="">0544581821 <i class="bi bi-phone-fill"></i></p>
+                        <p class="">شارع التحلية, جدة, السعودية <i class="bi bi-geo-alt-fill"></i></p>
+                        <p class="">dekher@support.com <i class="bi bi-envelope-fill"></i></p>
+                        <div class="text-end">
+                            <i class="bi bi-instagram"></i>
+                            <i class="bi bi-facebook"></i>
+                            <i class="bi bi-twitter"></i>
+                            <i class="bi bi-linkedin"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load static %}
+{% for fund in funds %}
+<div class="col" style="min-width: 10rem;">
+    <div class="card row m-5">
+        <div class="position-relative">
+            <img class="card-img-top" style="height: 150px; object-fit: cover;" src="http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg" alt="Card background">
+            <img class="position-absolute" style="width: 100px; height: 100px; object-fit: cover; bottom: -50px; left: 50%; transform: translateX(-50%); border: 5px solid white; border-radius: 50%;" src="{{ fund.logo.url }}" alt="Avatar">
+        </div>
+        <div class="card-body pt-2 mt-4">
+
+            <div class="d-flex justify-content-between">
+                {% if request.user == fund.owner %}
+                <div>
+                    <p class="btn btn-warning rounded-2 ps-2 pe-2">Enrolled</p>
+                </div>
+                {% endif %}
+                <h6 class="text-end"> {{ fund.status }}</h6>
+            </div>
+
+            <div class="d-flex justify-content-between">
+
+                <h4 class="">{{ fund.name|truncatechars:15 }}</h4>
+                <p class="text-end">Created At: {{ fund.created_at|date:'Y-m-d' }}</p>
+            </div>
+
+            <p class="card-text"><i class="bi bi-cash text-success"></i> Stock: <img style="width: 1rem; height: 1rem" src="{% static 'images/Saudi_Riyal_Symbol.svg.png' %}"> {{ fund.monthly_stock }} Per Month</p>
+
+            <p class="card-text">Start At: {{ fund.start_date|date:'d-m-Y' }}</p>
+
+
+        </div>
+        <div class="card-footer bg-transparent d-flex justify-content-between">
+            <div>
+                <a href="{% url 'fund:fund_details' fund.id %}" class="btn btn-success">Details</a>
+            </div>
+            <div>
+                {% if not request.user == fund.owner and not request.user in fund.members.all %}
+                <a href="" class="btn btn-outline-primary">Participate</a>
+                {% endif %}
+                {% if request.user == fund.owner %}
+                    <a class="btn btn-warning" href="{% url 'fund:update_fund' fund.id %}"><i class="bi bi-pencil-square"></i></a>
+                    <a class="btn btn-danger" href="{% url 'fund:delete_fund' fund.id %}"><i class="bi bi-trash"></i></a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}

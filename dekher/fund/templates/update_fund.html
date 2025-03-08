@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Fund{% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container shadow mt-3">
+        <form class="d-flex flex-column gap-3 p-4 rounded " action="{% url 'fund:update_fund' fund.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <img src="{{ fund.logo.url }}" class="img-thumbnail w-25 text-center">
+            <input type="file" name="logo" accept="image/*">
+
+            <label class="form-label" for="fund_name">Fund Name</label>
+            <input class="form-control" id="fund_name" name="name" type="text" value="{{fund.name}}" maxlength="50">
+
+            <label class="form-label" for="description">Fund Description</label>
+            <input class="form-control" id="description" name="description" type="text" value="{{fund.description}}">
+
+            <label class="form-label" for="monthly_stock">Fund's Monthly Stock</label>
+            <input class="form-control" id="monthly_stock" name="monthly_stock" type="text" value="{{fund.monthly_stock}}">
+
+            <label class="form-label">Start At: {{ fund.start_date }}</label>
+            <input class="form-control" type="date" value="{{ fund.start_date|date:'Y-m-d' }}" name="start_date">
+
+            <h5>s: {{fund.status}}</h5>
+            <select name="status">
+
+                {% for value, label in fund.Status.choices %}
+                <option value="{{ value }}" {% if fund.status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            {% for member in fund.members.all %}
+            <p>{{ member.username }} <a href="{% url 'fund:delete_member' member.username fund.id  %}"><i class="bi bi-trash text-danger"></i></a></p>
+            {% endfor %}
+            <small>Created At: {{ fund.created_at }}</small>
+
+            <input type="submit" class="btn btn-success" value="Save changes">
+        </form>
+    </div>
+</main>
+{% endblock %}
